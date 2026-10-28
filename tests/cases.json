@@ -1,0 +1,34 @@
+{
+  "version": "1.0.0",
+  "note": "断言只增不改口径。结构用例由 forge.py test 跑；内容用例由 scripts/validate.py --selftest 跑（good-script.json 全过、bad-script.json 至少命中 5 项）。",
+  "cases": [
+    {
+      "name": "技能包自身不应有 BLOCKER",
+      "kind": "path",
+      "path": "..",
+      "expect": { "kind": "skill", "blocker": 0, "min_score": 95 }
+    },
+    {
+      "name": "外层 Agent 包不应有 BLOCKER",
+      "kind": "path",
+      "path": "../../..",
+      "optional": true,
+      "expect": { "kind": "agent", "blocker": 0, "min_score": 95 }
+    },
+    {
+      "name": "坏 Agent 包应命中平台判据",
+      "kind": "tmpagent",
+      "expect": {
+        "kind": "agent",
+        "min_blocker": 4,
+        "must": ["AF-05", "AF-11", "AF-12", "AF-18", "AF-25", "AF-27", "AF-34"]
+      }
+    },
+    {
+      "name": "空输入应被拒绝而非给分",
+      "kind": "missing",
+      "path": "./__not_exist__",
+      "expect": { "exit": 2 }
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "口播分镜稿单一真相源",
+  "description": "口播、画面、转场、情绪全挂在 scenes[] 下。scripts/validate.py 内置同一套判据，此文件供编辑器与下游消费。",
+  "type": "object",
+  "required": ["meta", "scenes", "transitions", "totalCompositionFrames"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["platform", "fps", "width", "height", "safe_area", "viewpoint", "target_seconds"],
+      "additionalProperties": true,
+      "properties": {
+        "platform": { "enum": ["douyin", "xiaohongshu", "shipinhao"] },
+        "fps": { "enum": [24, 25, 30, 60], "description": "帧号由 秒 × fps 派生，组件内不得硬编码" },
+        "width": { "type": "integer", "minimum": 240 },
+        "height": { "type": "integer", "minimum": 240 },
+        "safe_area": {
+          "type": "object",
+          "required": ["top", "bottom", "left", "right"],
+          "properties": {
+            "top": { "type": "integer" },
+            "bottom": { "type": "integer" },
+            "left": { "type": "integer" },
+            "right": { "type": "integer" }
+          }
+        },
+        "target_seconds": { "type": "number", "minimum": 30, "maximum": 50 },
+        "anchor_type": { "enum": ["efficiency", "capability", "quality", "process"] },
+        "anchor_zh": { "type": "string" },
+        "viewpoint": { "type": "string", "minLength": 6, "maxLength": 40, "description": "观点句，全片叙事终点，必须在观点回扣段原句出现" },
+        "note": { "type": "string" }
+      }
+    },
+    "scenes": {
+      "type": "array",
+      "minItems": 5,
+      "maxItems": 12,
+      "items": {
+        "type": "object",
+        "required": ["scene_id", "narrative_beat", "startFrame", "durationInFrames",
+                     "type", "voiceover_text", "subtitle_lines", "emotion",
+                     "motion_budget", "animation"],
+        "additionalProperties": false,
+        "properties": {
+          "scene_id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "narrative_beat": {
+            "enum": ["hook", "conflict", "progressive_breakdown", "midpoint_hook", "viewpoint", "cta"]
+          },
+          "startFrame": { "type": "integer", "minimum": 0, "description": "递推得出：上一场起帧 + 上一场时长 − 转场时长" },
+          "durationInFrames": { "type": "integer", "minimum": 30 },
+          "type": { "enum": ["statement", "bullets", "stat", "image", "title", "quote"] },
+          "voiceover_text": {
+            "type": "string",
+            "minLength": 1,
+            "description": "给 TTS 的纯文本，禁止 markdown 与星号，强调词另放 emphasis_words"
+          },
+          "subtitle_lines": {
+            "type": "array",
+            "minItems": 1,
+            "maxItems": 2,
+            "items": { "type": "string", "maxLength": 20 },
+            "description": "每行不超过 16 个可念字，避开抖音上下遮挡区"
+          },
+          "emphasis_words": { "type": "array", "items": { "type": "string" } },
+          "emotion": {
+            "type": "object",
+            "required": ["level", "direction"],
+            "additionalProperties": false,
+            "properties": {
+              "level": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "direction": { "enum": ["up", "down", "flat"] }
+            }
+          },
+          "motion_budget": {
+            "type": "number", "minimum": 0, "maximum": 3,
+            "description": "主动运动元素数量。down 场景不超过 1；midpoint_hook 不超过相邻功能场的一半"
+          },
+          "first_frame_visible": { "type": "boolean", "description": "首场必须为 true，抖音拿第 0 帧当封面" },
+          "typewriter": { "type": "boolean", "description": "全片最多 2 处" },
+          "animation": {
+            "type": "object",
+            "required": ["enter", "spring", "enterFrames"],
+            "additionalProperties": false,
+            "properties": {
+              "enter": { "enum": ["slide-from-bottom", "scale-up", "fade-up", "none"] },
+              "spring": { "enum": ["bouncy", "snappy", "smooth", "none"] },
+              "enterFrames": { "type": "integer", "minimum": 1, "maximum": 24 }
+            }
+          },
+          "visual": {
+            "type": "object",
+            "additionalProperties": true,
+            "properties": {
+              "asset": { "type": "string" },
+              "highlight_region": { "type": "string" }
+            }
+          }
+        }
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["after_scene", "durationInFrames", "kind"],
+        "additionalProperties": false,
+        "properties": {
+          "after_scene": { "type": "string", "description": "不得指向末场，同一场只挂一条" },
+          "durationInFrames": { "type": "integer", "minimum": 2, "description": "不超过相邻场景时长的一半" },
+          "kind": { "enum": ["fade", "slide", "wipe", "flip", "none"] }
+        }
+      }
+    },
+    "totalCompositionFrames": {
+      "type": "integer",
+      "minimum": 300,
+      "description": "必须等于 Σ scene.durationInFrames − Σ transition.durationInFrames"
+    }
+  }
+}
