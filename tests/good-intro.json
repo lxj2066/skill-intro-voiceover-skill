@@ -1,0 +1,724 @@
+{
+  "meta": {
+    "content_type": "personal_intro",
+    "platform_primary": "douyin",
+    "fps": 30,
+    "totalCompositionFrames": 1720,
+    "target_seconds": 60.0,
+    "perspective": "first_person",
+    "viewpoint": "我不是把方案写完就走的人，我是把方案落到数据上的人",
+    "language_nail": "落到数据上",
+    "visual_hammer": "项目结果看板",
+    "has_avatar": true,
+    "visual": {
+      "canvas": {
+        "width": 1080,
+        "height": 1920,
+        "ratio": "9:16"
+      },
+      "safe_area": {
+        "top": 100,
+        "bottom": 200,
+        "left": 60,
+        "right": 60
+      },
+      "type_scale": {
+        "hook": 72,
+        "h1": 56,
+        "body": 40,
+        "caption": 32
+      },
+      "palette": "bright_corporate",
+      "background": "cool_off_white",
+      "accent_colors": [
+        "slate_blue"
+      ],
+      "text_color": "deep_slate"
+    },
+    "motion_language": {
+      "primary": "corporate",
+      "params": {
+        "durationFrames": [
+          6,
+          12
+        ],
+        "easing": "cubic-bezier(0.2,0,0,1)",
+        "overshoot": [
+          0.0,
+          0.03
+        ],
+        "maxSimultaneousElements": 1
+      }
+    },
+    "note": "占位口播，必须整段替换为素材真实内容；有数字的场景要填 claims.source"
+  },
+  "scriptTimeline": [
+    {
+      "scene_id": "s01",
+      "startFrame": 0,
+      "durationInFrames": 90,
+      "type": "statement",
+      "narrative_beat": "hook",
+      "emotion": {
+        "level": 5,
+        "direction": "flat"
+      },
+      "visual_role": "evidence",
+      "voiceover_pure": "如果你在找重做招聘流程的人。",
+      "emphasis_words": [
+        "重做"
+      ],
+      "emphasis_positions": [
+        45
+      ],
+      "visual_asset": {
+        "type": "screen_record",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "playful",
+      "enter": "scale-up",
+      "enterFrames": 14,
+      "typewriter": true
+    },
+    {
+      "scene_id": "s02",
+      "startFrame": 82,
+      "durationInFrames": 105,
+      "type": "statement",
+      "narrative_beat": "conflict",
+      "emotion": {
+        "level": 4,
+        "direction": "up"
+      },
+      "visual_role": "narrative",
+      "voiceover_pure": "我入行的时候，先学会的是把流程跑顺。",
+      "emphasis_words": [
+        "流程跑顺"
+      ],
+      "emphasis_positions": [
+        52
+      ],
+      "visual_asset": {
+        "type": "blank_stage",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "corporate",
+      "enter": "fade-up",
+      "enterFrames": 10,
+      "typewriter": false
+    },
+    {
+      "scene_id": "s03",
+      "startFrame": 179,
+      "durationInFrames": 105,
+      "type": "statement",
+      "narrative_beat": "conflict",
+      "emotion": {
+        "level": 4,
+        "direction": "down"
+      },
+      "visual_role": "narrative",
+      "voiceover_pure": "但跑顺之后我发现，人还是留不住。",
+      "emphasis_words": [
+        "留不住"
+      ],
+      "emphasis_positions": [
+        52
+      ],
+      "visual_asset": {
+        "type": "blank_stage",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "snappy",
+      "enter": "slide-from-bottom",
+      "enterFrames": 10,
+      "typewriter": false
+    },
+    {
+      "scene_id": "s04",
+      "startFrame": 276,
+      "durationInFrames": 120,
+      "type": "bullets",
+      "narrative_beat": "progressive_breakdown",
+      "emotion": {
+        "level": 3,
+        "direction": "up"
+      },
+      "visual_role": "evidence",
+      "voiceover_pure": "我先动了筛选。但问题是，筛得准也没用。",
+      "emphasis_words": [
+        "但问题是"
+      ],
+      "emphasis_positions": [
+        60
+      ],
+      "visual_asset": {
+        "type": "screen_record",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "smooth",
+      "enter": "fade-up",
+      "enterFrames": 10,
+      "typewriter": false,
+      "feature_index": 1
+    },
+    {
+      "scene_id": "s05",
+      "startFrame": 388,
+      "durationInFrames": 42,
+      "type": "title",
+      "narrative_beat": "midpoint_hook",
+      "emotion": {
+        "level": 4,
+        "direction": "up"
+      },
+      "visual_role": "narrative",
+      "voiceover_pure": "我用了很久。",
+      "emphasis_words": [
+        "很久"
+      ],
+      "emphasis_positions": [
+        21
+      ],
+      "visual_asset": {
+        "type": "blank_stage",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "smooth",
+      "enter": "slide-from-bottom",
+      "enterFrames": 10,
+      "typewriter": false
+    },
+    {
+      "scene_id": "s06",
+      "startFrame": 422,
+      "durationInFrames": 240,
+      "type": "bullets",
+      "narrative_beat": "progressive_breakdown",
+      "emotion": {
+        "level": 4,
+        "direction": "up"
+      },
+      "visual_role": "evidence",
+      "voiceover_pure": "更狠的是，决定成败的不是面试，是人进来以后的头几个月。",
+      "emphasis_words": [
+        "更狠的是"
+      ],
+      "emphasis_positions": [
+        120
+      ],
+      "visual_asset": {
+        "type": "screen_record",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "corporate",
+      "enter": "fade-up",
+      "enterFrames": 10,
+      "typewriter": false,
+      "feature_index": 2
+    },
+    {
+      "scene_id": "s07",
+      "startFrame": 654,
+      "durationInFrames": 240,
+      "type": "bullets",
+      "narrative_beat": "progressive_breakdown",
+      "emotion": {
+        "level": 5,
+        "direction": "up"
+      },
+      "visual_role": "evidence",
+      "voiceover_pure": "关键是第三步。我把交付标准写进合同，谁都能查。",
+      "emphasis_words": [
+        "关键是第三步"
+      ],
+      "emphasis_positions": [
+        120
+      ],
+      "visual_asset": {
+        "type": "screen_record",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "snappy",
+      "enter": "slide-from-bottom",
+      "enterFrames": 10,
+      "typewriter": false,
+      "feature_index": 3
+    },
+    {
+      "scene_id": "s08",
+      "startFrame": 886,
+      "durationInFrames": 240,
+      "type": "quote",
+      "narrative_beat": "persona",
+      "emotion": {
+        "level": 5,
+        "direction": "flat"
+      },
+      "visual_role": "narrative",
+      "voiceover_pure": "我不是把方案写完就走的人，我是把方案落到数据上的人。",
+      "emphasis_words": [
+        "落到数据上"
+      ],
+      "emphasis_positions": [
+        120
+      ],
+      "visual_asset": {
+        "type": "blank_stage",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "smooth",
+      "enter": "fade-up",
+      "enterFrames": 10,
+      "typewriter": false
+    },
+    {
+      "scene_id": "s09",
+      "startFrame": 1118,
+      "durationInFrames": 240,
+      "type": "statement",
+      "narrative_beat": "persona",
+      "emotion": {
+        "level": 4,
+        "direction": "flat"
+      },
+      "visual_role": "narrative",
+      "voiceover_pure": "落到数据上不是口号，是我看项目的标准，这条你用得上。",
+      "emphasis_words": [
+        "不是口号",
+        "用得上"
+      ],
+      "emphasis_positions": [
+        80,
+        160
+      ],
+      "visual_asset": {
+        "type": "blank_stage",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "playful",
+      "enter": "slide-from-bottom",
+      "enterFrames": 10,
+      "typewriter": false
+    },
+    {
+      "scene_id": "s10",
+      "startFrame": 1350,
+      "durationInFrames": 240,
+      "type": "bullets",
+      "narrative_beat": "cooperation",
+      "emotion": {
+        "level": 4,
+        "direction": "up"
+      },
+      "visual_role": "narrative",
+      "voiceover_pure": "我能提供的是招聘体系梳理。我在找愿意重做流程的团队。",
+      "emphasis_words": [
+        "我能提供",
+        "我在找"
+      ],
+      "emphasis_positions": [
+        80,
+        160
+      ],
+      "visual_asset": {
+        "type": "blank_stage",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "corporate",
+      "enter": "fade-up",
+      "enterFrames": 10,
+      "typewriter": false
+    },
+    {
+      "scene_id": "s11",
+      "startFrame": 1582,
+      "durationInFrames": 138,
+      "type": "title",
+      "narrative_beat": "cta",
+      "emotion": {
+        "level": 3,
+        "direction": "flat"
+      },
+      "visual_role": "narrative",
+      "voiceover_pure": "具体聊，主页私信我。",
+      "emphasis_words": [
+        "私信我"
+      ],
+      "emphasis_positions": [
+        69
+      ],
+      "visual_asset": {
+        "type": "blank_stage",
+        "highlight_region": "center"
+      },
+      "claims": [],
+      "role_tag": "",
+      "spring": "smooth",
+      "enter": "slide-from-bottom",
+      "enterFrames": 10,
+      "typewriter": false
+    }
+  ],
+  "motionTimeline": [
+    {
+      "motion_id": "m_001",
+      "layer": "subject",
+      "anchor": {
+        "type": "on_emphasis",
+        "scene_id": "s01",
+        "emphasis_word": "重做",
+        "offsetFrames": 0
+      },
+      "effect": "scale-up",
+      "params": {
+        "durationFrames": 9,
+        "spring": "playful",
+        "overshoot": 0.12
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": true
+    },
+    {
+      "motion_id": "m_002",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s02",
+        "offsetFrames": 0
+      },
+      "effect": "slide-in",
+      "params": {
+        "durationFrames": 7,
+        "spring": "corporate",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_003",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s03",
+        "offsetFrames": 0
+      },
+      "effect": "fade-up",
+      "params": {
+        "durationFrames": 8,
+        "spring": "snappy",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_004",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s04",
+        "offsetFrames": 0
+      },
+      "effect": "slide-in",
+      "params": {
+        "durationFrames": 8,
+        "spring": "smooth",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_005",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s05",
+        "offsetFrames": 0
+      },
+      "effect": "fade",
+      "params": {
+        "durationFrames": 5,
+        "spring": "smooth",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_006",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s06",
+        "offsetFrames": 0
+      },
+      "effect": "slide-in",
+      "params": {
+        "durationFrames": 8,
+        "spring": "corporate",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_007",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s07",
+        "offsetFrames": 0
+      },
+      "effect": "slide-in",
+      "params": {
+        "durationFrames": 9,
+        "spring": "snappy",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_008",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s08",
+        "offsetFrames": 0
+      },
+      "effect": "fade-up",
+      "params": {
+        "durationFrames": 9,
+        "spring": "smooth",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_009",
+      "layer": "decoration",
+      "anchor": {
+        "type": "relative_offset",
+        "scene_id": "s08",
+        "offsetFrames": 120
+      },
+      "effect": "slide-in",
+      "params": {
+        "durationFrames": 5,
+        "spring": "none",
+        "overshoot": 0.0
+      },
+      "target": "label_chip",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_010",
+      "layer": "subject",
+      "anchor": {
+        "type": "on_emphasis",
+        "scene_id": "s09",
+        "emphasis_word": "不是口号",
+        "offsetFrames": 0
+      },
+      "effect": "push-in",
+      "params": {
+        "durationFrames": 8,
+        "spring": "playful",
+        "overshoot": 0.12
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": true
+    },
+    {
+      "motion_id": "m_011",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s10",
+        "offsetFrames": 0
+      },
+      "effect": "fade",
+      "params": {
+        "durationFrames": 6,
+        "spring": "corporate",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    },
+    {
+      "motion_id": "m_012",
+      "layer": "subject",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s11",
+        "offsetFrames": 0
+      },
+      "effect": "scale-up",
+      "params": {
+        "durationFrames": 7,
+        "spring": "smooth",
+        "overshoot": 0.0
+      },
+      "target": "primary_subject",
+      "span_scenes": false,
+      "resolve_after_tts": false
+    }
+  ],
+  "avatarTimeline": [
+    {
+      "avatar_id": "av_001",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s01",
+        "offsetFrames": 0
+      },
+      "mode": "full",
+      "direction": "direct",
+      "position": "center",
+      "size": "65%",
+      "enter_effect": "fade-up",
+      "resolve_after_tts": false
+    },
+    {
+      "avatar_id": "av_002",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s04",
+        "offsetFrames": 0
+      },
+      "mode": "side_window",
+      "direction": "presenting",
+      "position": "right",
+      "size": "25%",
+      "enter_effect": "fade-up",
+      "resolve_after_tts": false
+    },
+    {
+      "avatar_id": "av_003",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s05",
+        "offsetFrames": 0
+      },
+      "mode": "hidden",
+      "direction": "listening",
+      "position": "center",
+      "size": "0%",
+      "enter_effect": "fade-up",
+      "resolve_after_tts": false
+    },
+    {
+      "avatar_id": "av_004",
+      "anchor": {
+        "type": "scene_enter",
+        "scene_id": "s08",
+        "offsetFrames": 0
+      },
+      "mode": "full",
+      "direction": "direct",
+      "position": "center",
+      "size": "65%",
+      "enter_effect": "fade-up",
+      "resolve_after_tts": false
+    }
+  ],
+  "transitions": [
+    {
+      "afterScene": "s01",
+      "presentation": "slide",
+      "direction": "from-bottom",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s02",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s03",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s04",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s05",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s06",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s07",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s08",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s09",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    },
+    {
+      "afterScene": "s10",
+      "presentation": "fade",
+      "direction": "none",
+      "durationInFrames": 8
+    }
+  ],
+  "checks": {}
+}

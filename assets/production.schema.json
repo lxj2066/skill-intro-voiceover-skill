@@ -1,0 +1,257 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "引流视频 production.json（双时间线 + 数字人）",
+  "description": "三条时间线共用一份主 JSON：口播是主轴，动效与数字人靠 anchor 挂上去。scripts/validate.py 内置同一套判据，此文件供编辑器与下游消费。",
+  "type": "object",
+  "required": ["meta", "scriptTimeline", "motionTimeline", "avatarTimeline", "transitions", "checks"],
+  "additionalProperties": false,
+  "properties": {
+    "meta": {
+      "type": "object",
+      "required": ["content_type", "platform_primary", "fps", "totalCompositionFrames",
+                   "perspective", "viewpoint", "has_avatar", "visual", "motion_language"],
+      "additionalProperties": true,
+      "properties": {
+        "content_type": { "enum": ["agent_skill", "personal_intro"] },
+        "platform_primary": { "enum": ["douyin", "xiaohongshu", "shipinhao"] },
+        "fps": { "enum": [24, 25, 30, 60], "description": "帧号由 秒 × fps 派生，组件内不得硬编码" },
+        "totalCompositionFrames": {
+          "type": "integer", "minimum": 900, "maximum": 2700,
+          "description": "必须等于 Σ scriptTimeline.durationInFrames − Σ transitions.durationInFrames"
+        },
+        "target_seconds": { "type": "number", "minimum": 30, "maximum": 90 },
+        "perspective": { "enum": ["first_person", "second_person", "third_person", "headhunter"] },
+        "viewpoint": { "type": "string", "minLength": 6, "maxLength": 40,
+                       "description": "观点句或人设句，必须在回扣段原句出现" },
+        "language_nail": { "type": "string", "description": "语言钉，personal_intro 必填，6 到 10 字" },
+        "visual_hammer": { "type": "string", "description": "视觉锤，一个可画面化的具体锚点" },
+        "has_avatar": { "type": "boolean" },
+        "note": { "type": "string" },
+        "visual": {
+          "type": "object",
+          "required": ["canvas", "safe_area", "type_scale", "palette", "background", "text_color"],
+          "additionalProperties": true,
+          "properties": {
+            "canvas": {
+              "type": "object",
+              "required": ["width", "height", "ratio"],
+              "properties": {
+                "width": { "type": "integer" },
+                "height": { "type": "integer" },
+                "ratio": { "enum": ["9:16", "3:4", "1:1"] }
+              }
+            },
+            "safe_area": {
+              "type": "object",
+              "required": ["top", "bottom", "left", "right"],
+              "properties": {
+                "top": { "type": "integer" },
+                "bottom": { "type": "integer" },
+                "left": { "type": "integer" },
+                "right": { "type": "integer" }
+              }
+            },
+            "type_scale": {
+              "type": "object",
+              "required": ["hook", "h1", "body", "caption"],
+              "properties": {
+                "hook": { "type": "integer", "minimum": 60 },
+                "h1": { "type": "integer", "minimum": 48 },
+                "body": { "type": "integer", "minimum": 36 },
+                "caption": { "type": "integer", "minimum": 24 }
+              }
+            },
+            "palette": { "enum": ["bright_playful", "bright_corporate"] },
+            "background": { "type": "string", "description": "不得为近黑或暗色" },
+            "accent_colors": { "type": "array", "items": { "type": "string" } },
+            "text_color": { "type": "string" }
+          }
+        },
+        "motion_language": {
+          "type": "object",
+          "required": ["primary", "params"],
+          "properties": {
+            "primary": { "enum": ["playful", "corporate", "bubble"] },
+            "params": {
+              "type": "object",
+              "required": ["durationFrames", "easing", "overshoot", "maxSimultaneousElements"],
+              "properties": {
+                "durationFrames": {
+                  "type": "array", "minItems": 2, "maxItems": 2,
+                  "items": { "type": "integer" },
+                  "description": "playful 5 到 9 帧，corporate 6 到 12 帧"
+                },
+                "easing": { "type": "string" },
+                "overshoot": {
+                  "type": "array", "minItems": 2, "maxItems": 2,
+                  "items": { "type": "number" },
+                  "description": "playful 0.10 到 0.20，corporate 0 到 0.03"
+                },
+                "maxSimultaneousElements": { "type": "integer" }
+              }
+            }
+          }
+        }
+      }
+    },
+    "scriptTimeline": {
+      "type": "array",
+      "minItems": 8,
+      "maxItems": 30,
+      "items": {
+        "type": "object",
+        "required": ["scene_id", "startFrame", "durationInFrames", "type", "narrative_beat",
+                     "emotion", "visual_role", "voiceover_pure", "emphasis_words",
+                     "emphasis_positions", "spring", "enter", "enterFrames"],
+        "additionalProperties": false,
+        "properties": {
+          "scene_id": { "type": "string", "pattern": "^[a-z0-9_]+$" },
+          "startFrame": { "type": "integer", "minimum": 0,
+                          "description": "递推得出：上一场起帧 + 上一场时长 − 转场时长" },
+          "durationInFrames": { "type": "integer", "minimum": 30 },
+          "type": { "enum": ["statement", "bullets", "stat", "image", "title", "quote"] },
+          "narrative_beat": {
+            "enum": ["hook", "conflict", "progressive_breakdown", "midpoint_hook",
+                     "viewpoint", "persona", "cooperation", "cta"]
+          },
+          "feature_index": { "type": "integer", "minimum": 1,
+                             "description": "功能点编号，同一功能点可跨多场，转折词只挂首场" },
+          "emotion": {
+            "type": "object",
+            "required": ["level", "direction"],
+            "additionalProperties": false,
+            "properties": {
+              "level": { "type": "integer", "minimum": 1, "maximum": 5 },
+              "direction": { "enum": ["up", "down", "flat"] }
+            }
+          },
+          "visual_role": { "enum": ["evidence", "narrative"] },
+          "voiceover_pure": {
+            "type": "string", "minLength": 1,
+            "description": "唯一给 TTS 的字段。禁止括号、星号、emoji、舞台指示"
+          },
+          "emphasis_words": { "type": "array", "items": { "type": "string" } },
+          "emphasis_positions": {
+            "type": "array", "items": { "type": "integer", "minimum": 0 },
+            "description": "相对场景起点的帧偏移，与 emphasis_words 同长"
+          },
+          "visual_asset": {
+            "type": "object",
+            "properties": {
+              "type": { "type": "string" },
+              "highlight_region": { "type": "string" }
+            }
+          },
+          "claims": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": ["text", "source"],
+              "properties": {
+                "text": { "type": "string" },
+                "source": { "type": "string", "minLength": 1 }
+              }
+            },
+            "description": "口播里出现数字时必填，source 填素材出处或用户确认"
+          },
+          "role_tag": { "type": "string", "description": "主导 / 负责 / 参与，提到就必须标" },
+          "spring": { "enum": ["playful", "corporate", "bubble", "snappy", "smooth", "none"] },
+          "enter": { "enum": ["slide-from-bottom", "scale-up", "fade-up", "none"] },
+          "enterFrames": { "type": "integer", "minimum": 1, "maximum": 24 },
+          "typewriter": { "type": "boolean", "description": "全片最多 2 处" }
+        }
+      }
+    },
+    "motionTimeline": {
+      "type": "array",
+      "minItems": 8,
+      "items": {
+        "type": "object",
+        "required": ["motion_id", "layer", "anchor", "effect", "params", "span_scenes", "resolve_after_tts"],
+        "additionalProperties": false,
+        "properties": {
+          "motion_id": { "type": "string" },
+          "layer": { "enum": ["subject", "decoration", "background"] },
+          "anchor": {
+            "type": "object",
+            "required": ["type", "scene_id"],
+            "additionalProperties": false,
+            "properties": {
+              "type": { "enum": ["scene_enter", "on_emphasis", "before_scene_end",
+                                 "relative_offset", "voiceover_gap"] },
+              "scene_id": { "type": "string" },
+              "emphasis_word": { "type": "string", "description": "type=on_emphasis 时必填，须逐字等于 emphasis_words 成员" },
+              "offsetFrames": { "type": "integer", "minimum": 0 },
+              "beforeFrames": { "type": "integer", "minimum": 0 }
+            }
+          },
+          "effect": { "enum": ["scale-up", "slide-in", "fade-up", "fade", "none", "push-in", "typewriter"] },
+          "params": {
+            "type": "object",
+            "required": ["durationFrames", "spring", "overshoot"],
+            "properties": {
+              "durationFrames": { "type": "integer", "minimum": 1 },
+              "spring": { "type": "string" },
+              "overshoot": { "type": "number", "minimum": 0, "maximum": 0.3 }
+            }
+          },
+          "target": { "type": "string" },
+          "span_scenes": { "type": "boolean" },
+          "resolve_after_tts": {
+            "type": "boolean",
+            "description": "on_emphasis 与 voiceover_gap 必须为 true"
+          }
+        }
+      }
+    },
+    "avatarTimeline": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["avatar_id", "anchor", "mode", "direction", "position", "size"],
+        "additionalProperties": false,
+        "properties": {
+          "avatar_id": { "type": "string" },
+          "anchor": {
+            "type": "object",
+            "required": ["type", "scene_id"],
+            "properties": {
+              "type": { "enum": ["scene_enter", "on_emphasis", "before_scene_end",
+                                 "relative_offset", "voiceover_gap"] },
+              "scene_id": { "type": "string" },
+              "offsetFrames": { "type": "integer" }
+            }
+          },
+          "mode": { "enum": ["full", "side_window", "hidden"] },
+          "direction": { "enum": ["direct", "presenting", "listening"] },
+          "position": { "enum": ["center", "left", "right"] },
+          "size": { "type": "string" },
+          "enter_effect": { "type": "string" },
+          "resolve_after_tts": { "type": "boolean" }
+        }
+      }
+    },
+    "transitions": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": ["afterScene", "presentation", "durationInFrames"],
+        "additionalProperties": false,
+        "properties": {
+          "afterScene": { "type": "string", "description": "不得指向末场，同一场只挂一条" },
+          "presentation": { "enum": ["fade", "slide", "wipe", "flip", "none"] },
+          "direction": { "type": "string" },
+          "durationInFrames": {
+            "type": "integer", "minimum": 2,
+            "description": "不超过相邻场景时长的一半"
+          }
+        }
+      }
+    },
+    "checks": {
+      "type": "object",
+      "description": "Step 11 把 validate.py 的结果写回来，A 到 I 九组各一条",
+      "additionalProperties": true
+    }
+  }
+}
